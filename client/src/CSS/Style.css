@@ -1,0 +1,437 @@
+#nav{
+    width: 100%;
+    background-color: azure;
+    padding: 10px;
+    height: 40px;
+    font-size: 13px;
+    position: sticky;
+    top: 0;
+    z-index: 10px;
+}
+body{
+    margin: 0;
+    padding: 0;
+ overflow-x: hidden;
+}
+
+#navbar{
+    background-color: gray;
+    width: 100%;
+    color: white;
+    height: 80px;
+    padding: 10px;
+    
+}
+/* Navbar.Brand{
+position: relative;
+right: 200px;
+
+} */
+#navbar button{
+    position: relative;
+    left: 30px;
+    bottom: 5px;
+background-color: white;
+color: gray;
+width: 100px;
+border-radius: 20px;
+height:40px;
+
+}
+
+.me-auto{
+    font-size: 14px;
+      color: white;
+    
+}
+
+@media (max-width: 768px) {
+  
+  }
+  
+  /* ✅ Responsive Styles for Mobile */
+  @media (max-width: 480px){
+
+  }
+
+/* //..............................circle image*********************************** */
+.head{
+    display: flex;
+    gap: 20px;
+    font-size: 10px;
+    padding-left: 200px;
+    padding-top: 20px;
+    background-color: white;
+    height: 130px;
+    }
+    
+    .he{
+        height: 72px;
+        width: 72px;
+        border: 2px solid purple;
+        border-radius:  50%;
+        padding: 1.5px;
+        
+    
+    }
+    .he img{
+        /* border: 2px solid purple; */
+       border-radius: 50%;
+       
+    }
+    .he p{
+        margin-top: 5px;
+    }
+
+    #icons{ 
+        position: relative;
+        left: 100px;
+        bottom: 10px;
+        font-size: 22px;
+        display: flex;
+       gap: 25px;
+        
+    
+    }
+    #responNav{
+        display: none;
+    }
+
+    #bars{
+        display: none;
+        position: relative;
+       right: 100px;
+    }
+
+   /**************************************FOOTER**********************************************/
+    /* //footer..........// */
+  .kart{
+    width: 100%;
+    background-color: gray;
+    margin-top: 100px;
+    padding:50px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.foot{
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+   right: 100px;
+    
+}
+
+.foot p{
+    font-size: 20px;
+    color:white;
+    
+}
+
+.foot ul li{
+    color:white;
+    line-height: 10px;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.link1{
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    color: rgb(226, 220, 220);
+  
+}
+
+.l1{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    padding: 3px;
+    
+   
+}
+
+.l1 i{
+    font-size: 20px;
+    position: relative;
+    top: 4px;
+}
+
+.link img{
+    margin-top: 20px;
+}
+
+hr{
+    margin-top: 50px;
+}
+
+ .mail{
+    font-size: 12px;
+    color: white;
+    margin-top: 50px;
+}
+
+
+
+  /* ✅ Responsive Styles for Tablet */
+  @media (max-width: 768px) {
+    .foot {
+        padding-left: 150px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+  
+  /* ✅ Responsive Styles for Mobile */
+  @media (max-width: 480px) {
+    .kart {
+       
+      padding: 10px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .foot div {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .mail {
+      font-size: 12px;
+    }
+  }
+
+  /* *********************Dsshborad******************* */
+ 
+
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #111827;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Sidebar Hidden for Small Screens */
+@media (max-width: 1024px) {
+  .sidebar {
+      transform: translateX(-100%);
+    
+  }
+  .sidebar.show {
+      transform: translateX(0);
+  }
+}
+
+/* Sidebar Header (Includes Brand & Close Button) */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+/* Close Button (Cross Icon) */
+.close-menu {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s;
+  display: none; /* Hide by default (for desktop) */
+}
+
+/* Show Close Button Only on Small Screens */
+@media (max-width: 1024px) {
+  .close-menu {
+      display: block;
+  }
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  margin: 15px 0;
+}
+
+.sidebar-menu li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.sidebar-menu li a.active,
+.sidebar-menu li a:hover {
+  background-color: #3b82f6;
+}
+
+.sidebar-menu li a svg {
+  margin-right: 10px;
+}
+
+.sidebar-menu li a.logout {
+  color: #f87171;
+}
+
+/* //////////////////cartdata******************************** */
+/* //...............card..................    */
+#cardData
+{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    border-radius: 30px;
+    text-align: center;
+
+}
+
+#cardData img:hover{
+    border: 1px solid gray;
+
+}
+
+h3{
+    margin-top: 50px;
+}
+
+#icons{
+    position: relative;
+    left: 50px;
+    bottom: 10px;
+    font-size: 22px;
+    display: flex;
+   gap: 25px;
+    
+
+}
+
+#img{
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 80px;
+  gap: 20px;
+  }
+
+  /* //...........hovers using......... card*/
+
+  .card {
+    position: relative;
+    overflow: hidden; /* Content card se bahar na nikle */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .card img {
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hover */
+  }
+  
+  .card:hover img {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+  
+  .card .overlay {
+    position: absolute;
+    bottom: 0; /* Image ke niche show hoga */
+    width: 100%;
+    background-color: white; /* Background white */
+    color: black; /* Text color black */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    /* font-weight: bold; */
+    text-transform: uppercase;
+    opacity: 0; /* Default hidden */
+    transition: opacity 0.3s ease-in-out;
+    border-top: 1px solid #ddd; /* Separate line between image and text */
+  }
+  
+  .card:hover .overlay {
+    opacity: 1; /* On hover, text visible hoga */
+  }
+
+/* //..............contact................ */
+#contact{
+  display: flex;
+
+}
+
+#paymethod {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* रेडियो बटन के बीच गैप */
+  margin-right: 200px;
+}
+
+#paymethod input[type="radio"] {
+  appearance: none; /* डिफॉल्ट रेडियो बटन को हटाना */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007bff; /* बॉर्डर का रंग */
+  border-radius: 50%; /* गोल आकार */
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  
+}
+
+#paymethod input[type="radio"]:checked {
+  background-color: #007bff; /* सिलेक्टेड रेडियो बटन का रंग */
+  border-color: #0056b3; /* बॉर्डर का गहरा रंग */
+}
+
+/* .........................fome................ */
+#fome{
+  width: 60%;
+  border: 1px solid rgb(211, 217, 223);
+  height: 1100px;
+  padding-left: 50px;
+  
+  
+  }
+  
+  #fome button{
+      width: 600px;
+      height: 50px;
+      background-color: rgb(37, 34, 34);
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+  }
+  input::placeholder{
+      font-size: 14px;
+  }
+  
+  #item{
+  width: 40%;
+  border: 1px solid rgb(211, 217, 223);
+  height: 1000px;
+  }
+ 
