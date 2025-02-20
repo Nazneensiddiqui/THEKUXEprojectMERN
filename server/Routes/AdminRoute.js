@@ -38,7 +38,8 @@ const storage = multer.diskStorage({
 
 
 
-route.post("/loginsystem",AdminController.LoginSystem)
+route.post("/adminlogin",AdminController.LoginSystem)
+
 route.post("/productsave",upload.array('files', 10), AdminController.ProductSave);
 route.post("/productdisplay",AdminController.ProductDisplay)
 route.post("/productmakeprimary",AdminController.ProductMakePrimary)

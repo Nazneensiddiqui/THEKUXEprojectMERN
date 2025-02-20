@@ -8,21 +8,19 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useState } from "react";
 import axios from "axios";
 
-import CashonDelivery from "../Paymants/CashOnDelivery";
-import InternetBanking from "../Paymants/InternetBank";
-import DebitCard from "../Paymants/DebitCard";
-import Upi from "../Paymants/UPI";
+
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BASE_URL from "../config";
+import { useEffect } from "react";
 
 
 const Contact = () => {
   const { amt } = useParams();
-  const [input, setInput] = useState({});
+  const [MyData, setMydata] = useState({});
 
-  const [paymethod, setPayMethod] = useState("");
+ 
 
   const MyCart = useSelector(state => state.myCart.cart);
   const dispatch = useDispatch();
@@ -41,21 +39,34 @@ const Contact = () => {
     dispatch(itemRemove({ id: id }))
   }
 
-  const paydone = () => {
-    const api=`${BASE_URL}/product/userpaydata`;
-    axios.post(api, input).then((res) => {
-      console.log(res);
-      toast.success("Save Data Successfully!!")
-    })
-    console.log(paydone)
-    navigate("/paydone")
+  const loadData = async() => {
+    const api=`${BASE_URL}/user/usershow`;
+    try {
+      const response= await axios.post(api, {id:localStorage.getItem("userid")})
+      console.log(response.data)
+      setMydata(response.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
+useEffect(()=>{
+  if (!localStorage.getItem("username"))
+    {
+      navigate("/loginsystem");
+    }
+  loadData()
+},[])
 
 
-  let totalAmount = 0;
+let totalAmount=0;
+let myProImg="";
+let myProList="";
   const Data = MyCart.map((key) => {
     totalAmount += key.price * key.qnty;
+    myProImg=`${BASE_URL}/${key.defaultImage}`;
+    myProList+=key.description+", ";
+
     return (
       <>
         <tr>
@@ -67,20 +78,13 @@ const Contact = () => {
             <a href="#" onClick={() => { qtyDecrement(key.id) }}>
               <FaCircleMinus />
             </a>
-
-
-            <span style={{ marginLeft: '10px', marginRight: '10px', fontWeight: 'bold' }}>
+           <span style={{ marginLeft: '10px', marginRight: '10px', fontWeight: 'bold' }}>
               {key.qnty}
             </span>
-
-
-            <a href="#" onClick={() => { qtyIncrement(key.id) }}>
+          <a href="#" onClick={() => { qtyIncrement(key.id) }}>
               <FaPlusCircle />
             </a>
-
-
-
-          </td>
+               </td>
           <td> {key.qnty * key.price} </td>
 
           <td>
@@ -93,45 +97,68 @@ const Contact = () => {
     )
   })
 
-
-
-  //<<<<<<<<<<<<<<< HANDLE INPUT TAGE>>>>>>>>>>>>>>>>>>>>
-  const handleInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    setInput(values => ({ ...values, [name]: value }));
-    setPayMethod(value);
-    console.log(input);
-  }
-
-
-
-
-
-
-
-  //     // .............payment ...................
-  // const handleInput1=(e)=>{
-  //   let val=e.target.value;
-  //   setPayMethod(val);
-
-  // }
-
-  let ans1;
-  if (paymethod == "cash on Delivery") {
-    ans1 = <CashonDelivery />
-  }
-  else
-    if (paymethod == "internet Banking") {
-      ans1 = <InternetBanking />
+  useEffect(()=>{
+    if (!localStorage.getItem("username"))
+    {
+      navigate("/login");
     }
-    else
-      if (paymethod == "debit Card") {
-        ans1 = <DebitCard />
-      }
-      else {
-        ans1 = <Upi />
-      }
+
+    loadData();
+}, [])
+
+//***************Razorpay********************************** */
+const [shoe,setShoe] = useState({
+  name: "Training Shoes",
+  creator: "Nike",
+  img: "https://images.pexels.com/photos/3490360/pexels-photo-3490360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+  price: 500,
+});
+
+
+const initPay = (data) => {
+const options = {
+  key : "rzp_test_w8SqaqpLZuusnD",
+  amount: data.amount,
+  currency: data.currency,
+  name: myProList,
+  description: "Test",
+  image:myProImg,
+  order_id: data.id,
+  handler: async (response) => {
+    try {
+      const verifyURL = "https://localhost:8060/api/payment/verify";
+      const {data} = await axios.post(verifyURL,response);
+    } catch(error) {
+      console.log(error);
+    }
+  },
+  theme: {
+    color: "#3399cc",
+  },
+};
+const rzp1 = new window.Razorpay(options);
+rzp1.open();
+};
+
+
+
+
+ const handlePay = async () => {
+  try {
+    const orderURL = "http://localhost:8060/api/payment/orders";
+    const {data} = await axios.post(orderURL,{amount: totalAmount});
+    console.log(data);
+    initPay(data.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+
+
+
 
   return (
     <>
@@ -144,7 +171,7 @@ const Contact = () => {
               <h5>Contact</h5>
               <a href="#" style={{ color: "black" }}>log in</a></div>
 
-            <input type="text" placeholder="Email or Mobile phone number" name="email" onChange={handleInput}
+            <input type="text" placeholder="Email or Mobile phone number" name="email" value={MyData.email}
               style={{ width: "600px", height: "50px", borderRadius: "5px", border: "1px solid rgb(199, 206, 214)", marginTop: "5px", marginRight: "30px" }} />
 
             <div style={{ display: "flex", fontSize: "14px", marginTop: "8px", marginLeft: "25px" }}>
@@ -155,26 +182,26 @@ const Contact = () => {
               <h5>Delivery</h5>
             </div>
 
-            <input type="text" placeholder="Name" name="name" onChange={handleInput}
+            <input type="text" placeholder="Name" name="name" value={MyData.name}
               style={{ width: "600px", height: "50px", borderRadius: "5px", border: "1px solid rgb(199, 206, 214)", marginTop: "10px", marginRight: "30px" }} />
 
             <div style={{ display: "flex", marginLeft: "28px", gap: "20px" }}>
-              <input type="text" placeholder="Address" name="address" onChange={handleInput}
+              <input type="text" placeholder="Address" name="address" value={MyData.address}
                 style={{ width: "600px", height: "50px", borderRadius: "5px", border: "1px solid rgb(199, 206, 214)", marginTop: "10px", marginRight: "55px" }} />
             </div>
 
-            <input type="text" placeholder="Phone" name="phoneno" onChange={handleInput}
+            <input type="text" placeholder="Phone" name="phoneno" value={MyData.contact}
               style={{ width: "600px", height: "50px", borderRadius: "5px", border: "1px solid rgb(199, 206, 214)", marginTop: "10px", marginRight: "30px" }} />
 
             <div style={{ display: "flex", marginLeft: "28px", gap: "20px" }}>
-              <input type="text" placeholder="City" name="city" onChange={handleInput}
+              <input type="text" placeholder="City" name="city" value={MyData.city}
                 style={{ width: "290px", height: "50px", borderRadius: "5px", border: "1px solid rgb(199, 206, 214)", marginTop: "10px" }} />
 
-              <input type="text" placeholder="State" name="state" onChange={handleInput}
+              <input type="text" placeholder="State" name="state" value={MyData.state}
                 style={{ width: "290px", height: "50px", borderRadius: "5px", border: "1px solid rgb(199, 206, 214)", marginTop: "10px" }} />
 
             </div>
-            <input type="text" placeholder="Amount" name="amount" onChange={handleInput}
+            <input type="text" placeholder="Amount" name="amount" value={totalAmount} 
               style={{ width: "600px", height: "50px", borderRadius: "5px", border: "1px solid rgb(199, 206, 214)", marginTop: "10px", marginRight: "30px" }} />
 
             <div style={{ display: "flex", fontSize: "14px", marginLeft: "30px", marginTop: "8px" }}>
@@ -194,21 +221,7 @@ const Contact = () => {
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "px", marginLeft: "50px", marginRight: "55px", fontSize: "16px" }}>
               All transactions are secure and encrypted. </div>
 
-            <div id="paymethod">
-
-              <div>
-                <input type="radio" name="paymethod" value="cash on Delivery" onChange={handleInput} style={{ marginLeft: "10px" }} />  Cash on Delivery
-                <input type="radio" name="paymethod" value="internet Banking" onChange={handleInput} style={{ marginLeft: "150px" }} /> Internet Banking<br/>
-
-                <input type="radio" name="paymethod" value="debit Card" onChange={handleInput} style={{ marginRight: "5px" }} /> Debit/Credit Card
-                <input type="radio" name="paymethod" value="upi" onChange={handleInput} style={{ marginLeft: "136px" }} /> UPI/Phone Pay
-              </div>
-
-              <div>
-                {ans1}
-              </div>
-            </div>
-            <button onClick={paydone} >Complete Order</button>
+            <button onClick={handlePay} >Complete Order</button>
           </div>
 
 
@@ -233,7 +246,7 @@ const Contact = () => {
                   <th> </th>
                   <th> </th>
                   <th> Total Amount: </th>
-                  <th> {totalAmount}  </th>
+                  <th>₹ {totalAmount}  </th>
                   <th> </th>
                 </tr>
               </tbody>

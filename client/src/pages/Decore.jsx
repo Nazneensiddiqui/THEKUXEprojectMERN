@@ -27,12 +27,14 @@ import { addToCart } from '../redux/CartSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Decor=()=>{
-
+const[ImgId , setImgId]=useState("")
   const dispatch= useDispatch();
   const navigate=useNavigate()
 
   //data ko get karne ke liye
 const[Mydata , setMydata]=useState([])
+
+
 const loadData=()=>{
     const api=`${BASE_URL}/product/homeproductdisplay`;
   axios.get(api).then((res)=>{
@@ -45,7 +47,8 @@ useEffect(()=>{
 
 
  const Pro_Detail=(id)=>{
-navigate(`/prodect/${id}`)
+  alert(id)
+navigate(`/productdetail/${id}`)
  }
 
 
@@ -57,7 +60,7 @@ const ans=Mydata.map((key)=>{
    <Card style={{width:"230px", marginTop:"20px"}}>
       {/* Image Section with Overlay */}
           <div className="card">
-            <a href='#' onClick={()=>{Pro_Detail(key.id)}}>
+            <a href='#' onClick={()=>{Pro_Detail(key._id)}}>
             <img src={`${BASE_URL}/${key.defaultImage}`} style={{ height: "240px", width: "100%"  }} alt={key.description} /></a>
             <div className="overlay"  
             onClick={()=>{dispatch(addToCart({id:key._id, name:key.name, brand:key.brand, price:key.price, description:key.description, category:key.category, subcategory:key.subcategory, images:key.images, defaultImage:key.defaultImage, ratings:key.ratings, status:key.status, qnty:1}))}}>+Add to Cart</div>

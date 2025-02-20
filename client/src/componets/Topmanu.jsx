@@ -6,7 +6,8 @@ import { FaShoppingCart } from "react-icons/fa";
 import { GrUserAdmin } from "react-icons/gr";
 import { FaSearch } from "react-icons/fa";
 import { IoIosEye } from "react-icons/io";
-import { FaBars } from "react-icons/fa";
+import logout1 from "../images/logout1.jpg"
+
 
 
 import { useSelector } from 'react-redux';
@@ -15,19 +16,24 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
-import { useState } from 'react';
-import axios from 'axios';
-
+import { useContext } from 'react';
+import { myLoginContext } from '../redux/loginContext';
 
 
 
 
 const Topmanu=()=>{
-
+const{isLogedIn, setIsLogedIn}=useContext(myLoginContext)
 
  const mycart= useSelector(state=>state.myCart.cart);
-   //console.log(mycart);
   const navigate= useNavigate();
+
+  
+//logout
+  const logout=()=>{
+    localStorage.clear();
+    setIsLogedIn(false);
+  }
 
  const cartPage=()=>{
     navigate("/cart");
@@ -60,7 +66,7 @@ const Topmanu=()=>{
             
             <button onClick={()=>{navigate("/gift")}}>Get App</button>
 
-           <div id='icons'>
+           <div id='icons' style={{marginLeft:"30px"}}>
             <div><IoIosEye /><p style={{fontSize:"10px"}}>Viewed</p></div>
 
             <div>
@@ -75,18 +81,19 @@ const Topmanu=()=>{
 
             <div><a href='#' onClick={()=>{  navigate("/search")}}><FaSearch  style={{color:"white"}}/></a>
             <p style={{fontSize:"10px"}}>Search</p></div>
+
+       
+            {/* <div><a href='#' onClick={()=>{  navigate("/gift")}}><img src={logout1} width={20} height={20}/> </a>
+            <p style={{fontSize:"10px"}}> {localStorage.getItem("username")} </p>
+            </div> */}
          </div>
+         
+      
           </Nav>
         </Container>
       </Navbar>
 </div>
-
-
-
-
-
-
-        </>
+   </>
     )
 }
 export default Topmanu;

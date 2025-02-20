@@ -85,7 +85,7 @@ height:40px;
 
     #icons{ 
         position: relative;
-        left: 100px;
+        left: 200px;
         bottom: 10px;
         font-size: 22px;
         display: flex;
@@ -410,7 +410,7 @@ h3{
 #fome{
   width: 60%;
   border: 1px solid rgb(211, 217, 223);
-  height: 1100px;
+  height: auto;
   padding-left: 50px;
   
   
@@ -432,6 +432,6 @@ h3{
   #item{
   width: 40%;
   border: 1px solid rgb(211, 217, 223);
-  height: 1000px;
+  height:auto;
   }
  

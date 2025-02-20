@@ -9,6 +9,7 @@ import UpdateProduct from "./Admin/UpdateProduct";
 import Decor from "./pages/Decore";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
+import ProductDetail from "./pages/ProductDetail";
 
 
 const App=()=>{
@@ -18,9 +19,12 @@ const App=()=>{
     <Routes>
       <Route path="/" element={<Layout/>}>
       <Route index element={<Gift/>}/>
+      <Route path="gift" element={<Gift/>}/>
       <Route path="decor" element={<Decor/>}/>
       <Route path="cart" element={<Cart/>}/>
       <Route path="contact" element={<Contact/>}/>
+      <Route path="productdetail/:id" element={<ProductDetail/>}/>
+      
       <Route path="loginsystem" element={<LogSystem/>}/>
       </Route>
       <Route path="dashborad" element={<Dashboard/>}>
@@ -30,7 +34,6 @@ const App=()=>{
       
       
       </Route>
-
     
     </Routes>
     </BrowserRouter>

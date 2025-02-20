@@ -16,7 +16,7 @@
     text-align: center;
     width: 100%;
     max-width: 400px;
-    margin-top: 50px;
+    margin-top: 20px;
   }
   
   .auth-card h2 {
@@ -26,6 +26,15 @@
   }
   
   .auth-card input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .auth-card select{
     width: 100%;
     margin: 10px 0;
     padding: 10px;

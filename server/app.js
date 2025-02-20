@@ -11,6 +11,8 @@ const bodyParser=require("body-parser")
 
 const AdminRoute=require("./Routes/AdminRoute")
 const ProductRoute=require("./Routes/ProductRoute")
+const UserRoute=require("./Routes/userRoute")
+const paymentRoute=require("./Routes/Payment");
 
 
 mongoose.connect(dbcon).then((res)=>{
@@ -23,9 +25,12 @@ app.use(bodyParser.json())
 
 app.use("/admin",AdminRoute)
 app.use("/product",ProductRoute )
+app.use("/user",UserRoute)
 
 // Serve static files from the 'uploads' folder
-app.use('/uploads', express.static('uploads')); 
+app.use('/uploads', express.static('uploads'));
+//payment Rezorpay
+app.use("/api/payment/",paymentRoute); 
 
 app.listen(port , ()=>{
     console.log(`server run on ${port}`)

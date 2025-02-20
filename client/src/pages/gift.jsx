@@ -51,10 +51,36 @@ import lm6 from "../images/lm6.webp"
 import lm7 from "../images/lm7.webp"
 import lm8 from "../images/lm8.webp"
 import img from "../images/img.jpg"
+import { useEffect } from "react";
+import axios from "axios";
+import BASE_URL from "../config"
 
 
 const Gift=()=>{
   const navigate=useNavigate();
+
+  const getProfile=async()=>{
+try {
+  const token=localStorage.getItem("token")
+  const response=await axios.get(`${BASE_URL}/user/profile`,{headers:{Authorization:`Bearer ${token}`}})
+  console.log(response.data);
+  localStorage.setItem("userid", response.data._id);
+  localStorage.setItem("username", response.data.name);
+  //setIsLogedIn(true); 
+} catch (error) {
+  console.log(error)
+}
+  }
+   
+
+useEffect(()=>{
+  if (localStorage.getItem("token"))
+  {
+    getProfile();
+  }
+
+}, [])
+  
 
  
 

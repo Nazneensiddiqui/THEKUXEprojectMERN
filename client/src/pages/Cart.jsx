@@ -29,7 +29,7 @@ const navigate=useNavigate()
 }
 
 const process=()=>{
-  navigate("/Contact")
+  navigate("/loginsystem")
 }
 
     let totalAmount=0;

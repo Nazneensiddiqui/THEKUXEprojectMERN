@@ -31,18 +31,19 @@ const CustomerData=async(req,res)=>{
   }
 }
 
-
-// const CustomerDataDisplay=async(req,res)=>{
-//    try {
-//     const User=await UserModel.find()
-//     res.status(200).send(User)
-//    } catch (error) {
-//     console.log(error)
-//    }
-// }
+const ProductDetail=async(req , res)=>{
+ const { id }= req.body
+  try {
+    const Product= await ProductModel.findOne({id:id})
+    res.send(Product)
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
 module.exports={
     productDisplay,
-    CustomerData
+    CustomerData,
+    ProductDetail
 }
