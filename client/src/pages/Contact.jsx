@@ -140,13 +140,22 @@ const rzp1 = new window.Razorpay(options);
 rzp1.open();
 };
 
-
+const CustomerDetail={
+  name:MyData.name,
+  email:MyData.email,
+  address:MyData.address,
+  city:MyData.city,
+  contact:MyData.contact,
+  state:MyData.state,
+  myProImg:myProImg,
+  myProList:myProList
+}
 
 
  const handlePay = async () => {
   try {
     const orderURL = "http://localhost:8060/api/payment/orders";
-    const {data} = await axios.post(orderURL,{amount: totalAmount});
+    const {data} = await axios.post(orderURL,{amount: totalAmount, ...CustomerDetail});
     console.log(data);
     initPay(data.data);
   } catch (error) {

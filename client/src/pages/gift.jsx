@@ -155,7 +155,7 @@ useEffect(()=>{
     <div align="center" style={{marginTop:"50px", fontFamily:"time", width:"100%", height:"auto", flexWrap:"wrap"}} onClick={()=>{navigate("/decore")}}> 
         <h1>Make him feel special</h1>
         <p>With the perfect gift.</p></div>
-        <div style={{display:"flex", gap:"5px"}}>
+        <div  id="cupimg" style={{display:"flex", gap:"5px"}}>
         <img src={hv1} width={450} height={500}/>
         <img src={hv2} width={450} height={500} />
         <div style={{backgroundColor:"lightgray", height:"500px",width:"450px",fontFamily:"time"}}>
@@ -236,16 +236,13 @@ useEffect(()=>{
   <h6>QUALITY GUARANTEE</h6>
   <p>We rigorously test every product to ensure it meets or exceeds our patrons expectations. If it doesn't, we won't sell it.</p>
 </div>
-
 <div style={{height:"150px", width:"400px"}}>
   <IoMailOutline  fontSize={24}/>
 <h6>CUSTOMER SERVICE</h6>
 <p>Award winning customer service - we are here to serve you. Get in touch!</p>
 </div>
-
 </div>
-<div>
-      <img src={img} style={{width:"100%" ,marginTop:"100px", height:"auto"}}/>
+<div><img src={img} style={{width:"100%" ,marginTop:"100px", height:"auto"}}/>
     </div>
 
        
