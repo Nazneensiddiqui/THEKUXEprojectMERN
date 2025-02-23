@@ -1,4 +1,7 @@
 const AdminModel=require("../Models/AdminModels")
+const ProductModel=require("../Models/ProductModel")
+const UserModel=require("../Models/UserModel")
+const CustomerModel=require("../Models/CustomerModel")
 
 const LoginSystem=async(req , res)=>{
  const {userid , password}=req.body
@@ -26,9 +29,8 @@ const LoginSystem=async(req , res)=>{
 /////////*************************ProductSave*********************************************** */
 
 const ProductSave=async(req, res)=>{
-    console.log(req.body)
     const imageUrls = req.files.map(file => file.path);
-   const  { price, description, category,subcategory, product}=req.body
+   const  { price, description, category,subcategory, product, material,dimensions,pack}=req.body
    try {
     const Items= await ProductModel.create({
         product:product,
@@ -37,7 +39,10 @@ const ProductSave=async(req, res)=>{
         category:category, 
         subcategory:subcategory,
         images:imageUrls,
-        defaultImage:imageUrls[0]
+        defaultImage:imageUrls[0],
+        material: material,
+        pack:pack,
+        dimensions:dimensions,
         
     })
     res.status(200).send("Items Succesfull Update")
@@ -56,7 +61,6 @@ const ProductDisplay=async(req,res)=>{
 }
 
 const ProductMakePrimary=async(req,res)=>{
-    const{id}=req.body
     try {
         const Items=await ProductModel.findByIdAndUpdate(id , {status:"primary"})
         res.status(201).send({msg:"Product Status succesfully Changes!!! "})
@@ -75,11 +79,25 @@ const ProductNormal=async(req , res)=>{
     } 
 }
 
+const CustomerOrder=async(req, res)=>{
+const Customer= await CustomerModel.find()
+res.send(Customer)
+
+}
+
+
+const displayAllCustomer=async(req, res)=>{
+    const Customer= await UserModel.find();
+    res.status(200).send(Customer);
+}
+
 module.exports={
     LoginSystem,
     ProductSave,
     ProductDisplay,
     ProductMakePrimary,
-    ProductNormal
+    ProductNormal,
+    CustomerOrder,
+    displayAllCustomer,
 
 }

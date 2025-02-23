@@ -46,14 +46,65 @@ height:40px;
     
 }
 
+/* Small screens (max-width: 768px) */
 @media (max-width: 768px) {
-  
+  #navbar .navbar-brand {
+    font-size: 18px;
+    position: static;
   }
-  
-  /* ✅ Responsive Styles for Mobile */
-  @media (max-width: 480px){
 
+  #navbar .nav-link {
+    font-size: 14px;
+    padding: 5px;
   }
+
+  #icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  #icons div {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  /* Dropdown Menu Responsive */
+  .dropdown-menu {
+    position: absolute !important;
+    right: 0;
+    left: auto;
+  }
+  .me-auto{
+    display: none;
+  }
+}
+
+/* Extra small screens (max-width: 576px) */
+@media (max-width: 576px) {
+  #navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #navbar .navbar-brand {
+    font-size: 16px;
+  }
+
+  #icons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
 
 /* //..............................circle image*********************************** */
 .head{
@@ -334,6 +385,7 @@ hr{
 
 #cardData img:hover{
     border: 1px solid gray;
+    /* cursor: pointer; */
 
 }
 
@@ -399,6 +451,7 @@ h3{
   
   .card:hover .overlay {
     opacity: 1; /* On hover, text visible hoga */
+    cursor: pointer;
   }
 
 /* //..............contact................ */

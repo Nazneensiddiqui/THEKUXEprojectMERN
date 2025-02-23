@@ -131,10 +131,26 @@ const InsertItems = () => {
             </Form.Group>
           )}
 
-<Form.Group className="mb-3">
+<Form.Group className="mb-3" >
         <Form.Label>Enter Price</Form.Label>
           <Form.Control type="number" name="price" value={input.price || ""} onChange={handleInput} />
          </Form.Group>
+
+         <Form.Group className="mb-3" >
+        <Form.Label>Material</Form.Label>
+          <Form.Control type="text" name="material" value={input.material || ""} onChange={handleInput} />
+         </Form.Group>
+
+         <Form.Group className="mb-3" >
+        <Form.Label>Pack Context</Form.Label>
+          <Form.Control type="text" name="pack" value={input.pack || ""} onChange={handleInput} />
+         </Form.Group>
+
+         <Form.Group className="mb-3" >
+        <Form.Label>Dimensions</Form.Label>
+          <Form.Control type="text" name="dimensions" value={input.dimensions || ""} onChange={handleInput} />
+         </Form.Group>
+         
          <Form.Group className="mb-3">
            <Form.Label>Enter Description</Form.Label>
            <Form.Control type="text" name="description" value={input.description || ""} onChange={handleInput} />

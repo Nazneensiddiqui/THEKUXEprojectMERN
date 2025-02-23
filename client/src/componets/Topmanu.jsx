@@ -1,12 +1,13 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Dropdown } from "react-bootstrap";
 
 import { FaShoppingCart } from "react-icons/fa";
 import { GrUserAdmin } from "react-icons/gr";
 import { FaSearch } from "react-icons/fa";
 import { IoIosEye } from "react-icons/io";
-import logout1 from "../images/logout1.jpg"
+import { useState } from 'react';
 
 
 
@@ -24,20 +25,24 @@ import { myLoginContext } from '../redux/loginContext';
 
 const Topmanu=()=>{
 const{isLogedIn, setIsLogedIn}=useContext(myLoginContext)
+const [showDropdown, setShowDropdown] = useState(false);
 
  const mycart= useSelector(state=>state.myCart.cart);
   const navigate= useNavigate();
 
-  
+
 //logout
-  const logout=()=>{
-    localStorage.clear();
-    setIsLogedIn(false);
-  }
+const logout=()=>{
+  localStorage.clear();
+  setIsLogedIn(false);
+  navigate("/")
+}
 
  const cartPage=()=>{
     navigate("/cart");
    }
+
+
 
  
   const cartLen= mycart.length;
@@ -76,7 +81,32 @@ const{isLogedIn, setIsLogedIn}=useContext(myLoginContext)
     <p style={{ fontSize: "10px", marginLeft: "5px" }}>cart</p>
             </div>
 
-            <div> <a href='#'><GrUserAdmin onClick={()=>{navigate("/loginsystem")}} style={{color:"white"}}/></a>
+            <div>  
+             
+            {/* DROPDOWN */}
+            <Dropdown show={showDropdown} onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
+              <Nav.Link className="d-flex align-items-center " onClick={() => setShowDropdown(!showDropdown)}>
+                <GrUserAdmin size={22} className="cursor-pointer mt-1 " style={{color:"white"}} />
+              </Nav.Link>
+              <Dropdown.Menu>
+          {isLogedIn?(<>
+            <Dropdown.Item as={Link} to="/loginsystem">
+                 Welcome {localStorage.getItem("username")}!
+                </Dropdown.Item>
+                <Dropdown.Item  onClick={logout}>
+                 Logout!
+                </Dropdown.Item>
+           </>) : (<> 
+            <Dropdown.Item as={Link} to="/loginsystem">Login</Dropdown.Item>
+              <Dropdown.Item as={Link} to="/loginsystem">Signup</Dropdown.Item>
+          
+               
+          
+          </>)}     
+             
+
+                  </Dropdown.Menu>
+            </Dropdown>
             <p style={{fontSize:"10px"}}>Account</p></div>
 
             <div><a href='#' onClick={()=>{  navigate("/search")}}><FaSearch  style={{color:"white"}}/></a>

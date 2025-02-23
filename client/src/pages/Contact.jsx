@@ -17,12 +17,9 @@ import { useEffect } from "react";
 
 
 const Contact = () => {
-  const { amt } = useParams();
   const [MyData, setMydata] = useState({});
 
- 
-
-  const MyCart = useSelector(state => state.myCart.cart);
+const MyCart = useSelector(state => state.myCart.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -42,21 +39,13 @@ const Contact = () => {
   const loadData = async() => {
     const api=`${BASE_URL}/user/usershow`;
     try {
-      const response= await axios.post(api, {id:localStorage.getItem("userid")})
-      console.log(response.data)
+      const response = await axios.post(api, {id:localStorage.getItem("userid")});
+      console.log(localStorage.getItem("userid"))
       setMydata(response.data)
     } catch (error) {
       console.log(error)
     }
   }
-
-useEffect(()=>{
-  if (!localStorage.getItem("username"))
-    {
-      navigate("/loginsystem");
-    }
-  loadData()
-},[])
 
 
 let totalAmount=0;
@@ -69,7 +58,7 @@ let myProList="";
 
     return (
       <>
-        <tr>
+        <tr key={key.id}>
           <td> <img src={`${BASE_URL}/${key.defaultImage}`}  width="100" height="100" /> </td>
           <td> {key.description} </td>
           <td> {key.price}</td>
@@ -85,10 +74,10 @@ let myProList="";
               <FaPlusCircle />
             </a>
                </td>
-          <td> {key.qnty * key.price} </td>
+          <td>{key.qnty * key.price}</td>
 
           <td>
-            <img src={rem} width={25} height={25} onClick={() => { removeItem(key.id) }} />
+            <img src={rem} width={25} height={25} onClick={()=>{removeItem(key.id) }} />
 
           </td>
         </tr>
@@ -100,11 +89,11 @@ let myProList="";
   useEffect(()=>{
     if (!localStorage.getItem("username"))
     {
-      navigate("/login");
+      navigate("/loginsystem");
     }
-
-    loadData();
+loadData();
 }, [])
+
 
 //***************Razorpay********************************** */
 const [shoe,setShoe] = useState({
@@ -126,7 +115,7 @@ const options = {
   order_id: data.id,
   handler: async (response) => {
     try {
-      const verifyURL = "https://localhost:8060/api/payment/verify";
+      const verifyURL = `${BASE_URL}/api/payment/verify`;
       const {data} = await axios.post(verifyURL,response);
     } catch(error) {
       console.log(error);
@@ -140,22 +129,16 @@ const rzp1 = new window.Razorpay(options);
 rzp1.open();
 };
 
-const CustomerDetail={
-  name:MyData.name,
-  email:MyData.email,
-  address:MyData.address,
-  city:MyData.city,
-  contact:MyData.contact,
-  state:MyData.state,
-  myProImg:myProImg,
-  myProList:myProList
-}
+
+
 
 
  const handlePay = async () => {
   try {
-    const orderURL = "http://localhost:8060/api/payment/orders";
-    const {data} = await axios.post(orderURL,{amount: totalAmount, ...CustomerDetail});
+    const orderURL = `${BASE_URL}/api/payment/orders`;
+    const {data} = await axios.post(orderURL,{amount: totalAmount,name:MyData.name,
+      product:myProList,email:MyData.email,address:MyData.address,city:MyData.city,
+      contact:MyData.contact,state:MyData.state,});
     console.log(data);
     initPay(data.data);
   } catch (error) {
@@ -163,13 +146,7 @@ const CustomerDetail={
   }
 };
 
-
-
-
-
-
-
-  return (
+return (
     <>
       <center>
 

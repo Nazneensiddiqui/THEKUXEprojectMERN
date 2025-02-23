@@ -88,6 +88,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import "../css/LoginSystem.css";
+import BASE_URL from "../config";
 
 
 
@@ -123,7 +124,7 @@ const LogSystem = () => {
     const handleSubmit = async () => {
         try {
             if (userType === "admin") {
-             let   api = "http://localhost:8060/admin/adminlogin";
+             let   api = `${BASE_URL}/admin/adminlogin`;
                 const response= await axios.post(api,{ email: input.email, password: input.password})
                 console.log(response.data)
                 alert("Admin Successfully Login!!")
@@ -131,7 +132,7 @@ const LogSystem = () => {
 
             } else if (userType === "user") {
                 if (isSignUp) {
-                 let   api = "http://localhost:8060/user/signup";
+                 let   api = `${BASE_URL}/user/signup`;
                  const response= await axios.post(api, input)
                  console.log(response.data)
                  alert(response.data.msg)
@@ -146,20 +147,20 @@ const LogSystem = () => {
                 
                     setIsSignUp(false)
                 } else {
-                  let  api = "http://localhost:8060/user/login";
-                  const response= await axios.post(api,{ email: input.email, password: input.password})
-                  console.log(response.data)
+                  let  api = `${BASE_URL}/user/login`;
+                  const response= await axios.post(api, {email: input.email, password: input.password})
+                  console.log(response)
                   localStorage.setItem("token" , response.data.token)
+                  localStorage.setItem("userid" , response.data.user._id)
+                  localStorage.setItem("username" , response.data.user.name)
                   alert("Login Successfully!!")
                   navigate("/contact")
-                  
-                }
+                 }
             } else {
                 alert(response.data.msg)
                 return;
             }
-
-        } catch (error) {
+          } catch (error) {
             alert(error.response.data.msg)
         }
     };

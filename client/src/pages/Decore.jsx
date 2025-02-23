@@ -27,7 +27,7 @@ import { addToCart } from '../redux/CartSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Decor=()=>{
-const[ImgId , setImgId]=useState("")
+// const[ImgId , setImgId]=useState("")
   const dispatch= useDispatch();
   const navigate=useNavigate()
 

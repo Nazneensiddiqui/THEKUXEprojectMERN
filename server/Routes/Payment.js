@@ -1,4 +1,4 @@
-
+const CustomerModel=require("../Models/CustomerModel")
 const router = require("express").Router();
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
@@ -8,9 +8,21 @@ const crypto = require("crypto");
 
 
 router.post("/orders",async(req,res) => {
-    try {
-        
-        const instance = new Razorpay({
+   const {amount,name,product, email,address, city, contact, state, myProImg}=req.body
+      try {
+const Customer= await CustomerModel.create({
+    name:name,
+    product:product,
+    email:email,
+    address:address,
+    city:city,
+    contact:contact,
+    state:state,
+    amount:amount,
+    myProImg:myProImg,
+    
+})
+           const instance = new Razorpay({
             key_id: process.env.KEY_ID,
             key_secret: process.env.KEY_SECRET,
         });

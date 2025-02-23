@@ -21,10 +21,10 @@ const Dashborad = () => {
                 <ul className="sidebar-menu">
                     <li><Link to="/dashboard" className="active"><FaHome /> Dashboard</Link></li>
                     <li><Link to="insert"><FaPlus /> Add Product</Link></li>
-                    <li><Link to="displaycustomer"><FaTable /> Display Customers</Link></li>
-                    <li><Link to="customerorders"><MdOutlineProductionQuantityLimits />Customer Orders</Link></li>
+                    <li><Link to="displaycustomer"><FaTable /> Display User</Link></li>
+                    <li><Link to="customerorder"><MdOutlineProductionQuantityLimits />Customer Orders</Link></li>
                     <li><Link to="update"><FaEdit /> Update Products</Link></li>
-                    <li><Link to="updatecustomer"><FaEdit /> Update Customers</Link></li>
+                    <li><Link to="customerupdate"><FaEdit /> Update Customers</Link></li>
                     <li><Link to="/" className="logout"><FaSignOutAlt /> Logout</Link></li>
                 </ul>
             </div>

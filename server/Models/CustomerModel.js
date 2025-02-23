@@ -1,11 +1,19 @@
 const mongoose=require("mongoose")
 const CustomerSchema= new mongoose.Schema({
     name:String,
+    product:String,
     email:String,
     address:String,
     city:String,
     contact:Number,
     state:String,
+    amount:Number,
     myProImg:String,
-    myProList:String
+    createdAt: {
+        type: Date,
+        default: Date.now,  // ✅ इसे सही तरीके से सेट करें
+      },
    })
+   module.exports=mongoose.model("customer" , CustomerSchema)
+
+   

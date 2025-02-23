@@ -44,5 +44,8 @@ route.post("/productsave",upload.array('files', 10), AdminController.ProductSave
 route.post("/productdisplay",AdminController.ProductDisplay)
 route.post("/productmakeprimary",AdminController.ProductMakePrimary)
 route.post("/productmakenormal", AdminController.ProductNormal)
+route.get("/coustomerorderdisplay", AdminController.CustomerOrder)
+route.get("/displayallcustome", AdminController.displayAllCustomer)
+
 
 module.exports=route

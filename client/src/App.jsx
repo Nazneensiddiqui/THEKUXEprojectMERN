@@ -10,6 +10,9 @@ import Decor from "./pages/Decore";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import ProductDetail from "./pages/ProductDetail";
+import CustomerOrder from "./Admin/CustomerOrder";
+import CustomerUpdate from "./Admin/CustomerUpdate";
+import DisplayCustomer from "./Admin/DisplayCustomer";
 
 
 const App=()=>{
@@ -31,10 +34,11 @@ const App=()=>{
       <Route index element={<Admin/>}/>
       <Route path="insert" element={<InsertItems/>}/>
       <Route path="update" element={<UpdateProduct/>}/>
-      
+      <Route path="customerorder" element={<CustomerOrder/>}/>
+      <Route path="customerupdate" element={<CustomerUpdate/>}/>
+      <Route path="displaycustomer" element={<DisplayCustomer/>}/>
       
       </Route>
-    
     </Routes>
     </BrowserRouter>
  

@@ -55,23 +55,57 @@ import { useEffect } from "react";
 import axios from "axios";
 import BASE_URL from "../config"
 
+import { useContext } from 'react';
+import { myLoginContext } from '../redux/loginContext';
+
 
 const Gift=()=>{
   const navigate=useNavigate();
+//   const {setIsLogedIn} = useContext(myLoginContext);
+//   const getProfile=async()=>{
+// try {
+//   const token = localStorage.getItem("token");
+//   const response=await axios.get(`${BASE_URL}/user/profile`, {
+//     headers: { Authorization: `Bearer ${token}` },
+//   });
+//   console.log(response.data);
+//   localStorage.setItem("userid", response.data.user._id);
+//   localStorage.setItem("username", response.data.user.name);
+//   setIsLogedIn(true); 
+// } catch (error) {
+//   console.log(error)
+// }
+//   }
 
-  const getProfile=async()=>{
-try {
-  const token=localStorage.getItem("token")
-  const response=await axios.get(`${BASE_URL}/user/profile`,{headers:{Authorization:`Bearer ${token}`}})
-  console.log(response.data);
-  localStorage.setItem("userid", response.data._id);
-  localStorage.setItem("username", response.data.name);
-  //setIsLogedIn(true); 
-} catch (error) {
-  console.log(error)
-}
+
+const { setIsLogedIn } = useContext(myLoginContext);
+
+const getProfile = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    console.log("Stored Token:", token); // Debugging
+
+    const response = await axios.get(`${BASE_URL}/user/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    console.log("Profile Response:", response.data); // Debugging
+
+    if (response.data && response.data.user) {
+      localStorage.setItem("userid", response.data.user._id);
+      localStorage.setItem("username", response.data.user.name);
+      setIsLogedIn(true);
+    } else {
+      console.error("User data is missing in response");
+    }
+  } catch (error) {
+    console.error("Profile API Error:", error);
   }
-   
+};
+
+
+
+
 
 useEffect(()=>{
   if (localStorage.getItem("token"))
@@ -80,9 +114,7 @@ useEffect(()=>{
   }
 
 }, [])
-  
-
- 
+   
 
     const settings = {
         dots: true,
@@ -223,8 +255,6 @@ useEffect(()=>{
     <img src={lm8 }  width={700} />
       <img src={lm7}  width={700} /> 
 </div>
-
-           
 <div style={{fontFamily:"time",textAlign:"center",display:"flex",gap:"20px", marginTop:"50px",marginLeft:"80px", flexWrap:"wrap"}}>          
   <div style={{height:"150px", width:"400px"}}>
     <GoPackage fontSize={24} />
@@ -244,11 +274,7 @@ useEffect(()=>{
 </div>
 <div><img src={img} style={{width:"100%" ,marginTop:"100px", height:"auto"}}/>
     </div>
-
-       
-   
-
-        </>
+  </>
     )
 }
 export default Gift;

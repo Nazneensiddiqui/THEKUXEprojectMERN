@@ -8,8 +8,13 @@ const UpdateProduct=()=>{
 
     const [mydata, setMydata]= useState([]);
 
-   const loadData=async()=>{
-    const api=`${BASE_URL}/admin/productdisplay`;
+
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const limit = 5; // Change as needed
+    
+   const loadData=async(pageNumber)=>{
+    const api=`${BASE_URL}/admin/productdisplay?page=${pageNumber}&limit=${limit}`;
     try {
          const response= await axios.post(api);
          console.log(response.data);
@@ -72,13 +77,7 @@ const ans=mydata.map((key)=>{
      )
 })
 
-
-
-
-
-
-
-    return(
+ return(
         <>
           <h5 style={{color:"yellow"}}> Update Product</h5>
      <Table striped bordered hover style={{fontSize:"10px", width:"85%"}}>
@@ -99,6 +98,13 @@ const ans=mydata.map((key)=>{
        {ans}
       </tbody>
       </Table>
+ {/* Pagination Controls */}
+ <div>
+                <button disabled={page === 1} onClick={() => setPage(page - 1)}>Prev</button>
+                <span> Page {page} of {totalPages} </span>
+                <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>Next</button>
+            </div>
+
         </>
     )
 }

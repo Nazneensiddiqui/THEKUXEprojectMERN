@@ -12,7 +12,6 @@ const productDisplay=async(req, res)=>{
 const UserModel=require("../Models/UserModel")
 
 const CustomerData=async(req,res)=>{
-    console.log(req.body)
   const {email,name,address,phoneno,city,state,amount,paymethod}=req.body
  try {
     const mydata=await UserModel.create({
