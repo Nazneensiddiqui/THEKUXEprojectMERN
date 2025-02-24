@@ -13,6 +13,7 @@ import ProductDetail from "./pages/ProductDetail";
 import CustomerOrder from "./Admin/CustomerOrder";
 import CustomerUpdate from "./Admin/CustomerUpdate";
 import DisplayCustomer from "./Admin/DisplayCustomer";
+import Kitchen from "./pages/kitchen";
 
 
 const App=()=>{
@@ -24,6 +25,7 @@ const App=()=>{
       <Route index element={<Gift/>}/>
       <Route path="gift" element={<Gift/>}/>
       <Route path="decor" element={<Decor/>}/>
+      <Route path="kitchen" element={<Kitchen/>}/>
       <Route path="cart" element={<Cart/>}/>
       <Route path="contact" element={<Contact/>}/>
       <Route path="productdetail/:id" element={<ProductDetail/>}/>
