@@ -21,12 +21,15 @@ const ProductDetail=()=>{
     const dispatch= useDispatch();
     const navigate=useNavigate()
 
-const loadData=()=>{
-    const api=`${BASE_URL}/product/pro_detail`;
-    axios.get(api,{params: {id:id}}).then((res)=>{
-        setMydata(res.data)
-        console.log(res.data)
-    })
+const loadData=async()=>{
+  let api=`${BASE_URL}/product/productdetail`;
+  try {
+    const response= await axios.get(api,{id:id})
+    setMydata(response.data)
+    console.log(response.data)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 useEffect(()=>{

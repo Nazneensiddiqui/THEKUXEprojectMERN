@@ -51,6 +51,17 @@ const handleNormal = async(id)=>{
     loadData();
 }
 
+const DeletePro=async(id)=>{
+     const api=`${BASE_URL}/admin/deletepro`;
+     try {
+          const response= await axios.post(api, {id:id});
+          console.log(response.data);
+          alert(" Product Successfully Delete")
+     } catch (error) {
+          console.log(error);
+     }
+     loadData();
+ }
 
 
 const ans=mydata.map((key)=>{
@@ -72,6 +83,9 @@ const ans=mydata.map((key)=>{
                   <Button variant="success" size="sm" onClick={()=>{handleNormal(key._id)}}>Noraml</Button>
               </>)} 
            </td>
+           <td>
+           <Button variant="danger" size="sm" onClick={()=>{DeletePro(key._id)}}>Delete</Button>
+           </td>
          </tr>
         </>
      )
@@ -92,6 +106,7 @@ const ans=mydata.map((key)=>{
           <th>Status</th>
           <th>Rating</th>
           <th> Action</th>
+          <th> Delete</th>
         </tr>
       </thead>
       <tbody>

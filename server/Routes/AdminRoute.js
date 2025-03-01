@@ -42,6 +42,7 @@ route.post("/adminlogin",AdminController.LoginSystem)
 
 route.post("/productsave",upload.array('files', 10), AdminController.ProductSave);
 route.post("/productdisplay",AdminController.ProductDisplay)
+route.post("/deletepro", AdminController.DeleteProduct)
 route.post("/productmakeprimary",AdminController.ProductMakePrimary)
 route.post("/productmakenormal", AdminController.ProductNormal)
 route.get("/coustomerorderdisplay", AdminController.CustomerOrder)

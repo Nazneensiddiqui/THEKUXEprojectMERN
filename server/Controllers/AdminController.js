@@ -91,6 +91,16 @@ const displayAllCustomer=async(req, res)=>{
     res.status(200).send(Customer);
 }
 
+const DeleteProduct=async(req, res)=>{
+    const{id}=req.body
+    try {
+        const Product= await ProductModel.findByIdAndDelete(id)
+        res.send("ok")
+    } catch (error) {
+        console.log(Error)    }
+    
+}
+
 module.exports={
     LoginSystem,
     ProductSave,
@@ -99,5 +109,6 @@ module.exports={
     ProductNormal,
     CustomerOrder,
     displayAllCustomer,
+    DeleteProduct
 
 }

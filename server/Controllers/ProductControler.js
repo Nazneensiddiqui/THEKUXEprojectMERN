@@ -3,6 +3,7 @@ const ProductModel= require("../Models/ProductModel");
 const productDisplay=async(req, res)=>{
     try {
          const Product = await ProductModel.find();
+         console.log(Product)
          res.status(200).send(Product);
     } catch (error) {
         console.log(error);
@@ -31,6 +32,7 @@ const CustomerData=async(req,res)=>{
 }
 
 const ProductDetail=async(req , res)=>{
+  console.log(req.body)
  const { id }= req.body
   try {
     const Product= await ProductModel.findOne({id:id})
@@ -40,9 +42,23 @@ const ProductDetail=async(req , res)=>{
   }
 }
 
+ const Kitchendisplay=async(req,res)=>{
+  try {
+    const Product = await ProductModel.find({category:"Kitchen & Dining"});
+ 
+    res.status(200).send(Product);
+} catch (error) {
+   console.log(error);
+}
+}
+
+
+
+
 
 module.exports={
     productDisplay,
     CustomerData,
-    ProductDetail
+    ProductDetail,
+    Kitchendisplay
 }

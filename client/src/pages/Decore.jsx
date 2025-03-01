@@ -36,11 +36,12 @@ const[Mydata , setMydata]=useState([])
 
 
 const loadData=()=>{
-    const api=`${BASE_URL}/product/homeproductdisplay`;
+    let api=`${BASE_URL}/product/homeproductdisplay`;
   axios.get(api).then((res)=>{
     setMydata(res.data)
   })
 }
+
 useEffect(()=>{
   loadData()
 },[])
