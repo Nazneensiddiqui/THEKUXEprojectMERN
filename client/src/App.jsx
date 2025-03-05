@@ -15,9 +15,10 @@ import CustomerUpdate from "./Admin/CustomerUpdate";
 import DisplayCustomer from "./Admin/DisplayCustomer";
 import Kitchen from "./pages/kitchen";
 import Light from "./pages/Light";
-
 import Walldecore from "./pages/wall";
 import ProductEdit from "./admin/EditProduct";
+
+
 
 
 const App=()=>{
@@ -45,7 +46,7 @@ const App=()=>{
       <Route path="customerorder" element={<CustomerOrder/>}/>
       <Route path="customerupdate" element={<CustomerUpdate/>}/>
       <Route path="displaycustomer" element={<DisplayCustomer/>}/>
-      <Route path="edit/:id" element={<ProductEdit/>}/>
+      <Route path="edit/:id" element={<ProductEdit/>} />
       
       </Route>
     </Routes>
