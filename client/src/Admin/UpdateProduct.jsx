@@ -3,12 +3,13 @@ import axios from "axios";
 import BASE_URL from '../config';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 
 const UpdateProduct=()=>{
 
     const [mydata, setMydata]= useState([]);
 
-
+const navigate=useNavigate()
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const limit = 5; // Change as needed
@@ -63,6 +64,11 @@ const DeletePro=async(id)=>{
      loadData();
  }
 
+ const EditPro=(id)=>{
+     alert(id)
+    navigate(`/dashborad/edit/${id}`) 
+ }
+
 
 const ans=mydata.map((key)=>{
      return(
@@ -84,7 +90,8 @@ const ans=mydata.map((key)=>{
               </>)} 
            </td>
            <td>
-           <Button variant="danger" size="sm" onClick={()=>{DeletePro(key._id)}}>Delete</Button>
+           <Button variant="danger" size="sm" onClick={()=>{DeletePro(key._id)}}>Delete</Button></td>
+         <td>  <Button variant="warning" size="sm" onClick={()=>{EditPro(key._id)}}>Edit</Button>
            </td>
          </tr>
         </>
@@ -94,7 +101,7 @@ const ans=mydata.map((key)=>{
  return(
         <>
           <h5 style={{color:"yellow"}}> Update Product</h5>
-     <Table striped bordered hover style={{fontSize:"10px", width:"85%"}}>
+     <Table striped bordered hover style={{fontSize:"10px", width:"83%"}}>
       <thead>
         <tr>
           <th>Images</th>
@@ -107,6 +114,7 @@ const ans=mydata.map((key)=>{
           <th>Rating</th>
           <th> Action</th>
           <th> Delete</th>
+          <th> Edit</th>
         </tr>
       </thead>
       <tbody>

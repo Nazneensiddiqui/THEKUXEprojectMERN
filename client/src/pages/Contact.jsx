@@ -96,12 +96,12 @@ loadData();
 
 
 //***************Razorpay********************************** */
-const [shoe,setShoe] = useState({
-  name: "Training Shoes",
-  creator: "Nike",
-  img: "https://images.pexels.com/photos/3490360/pexels-photo-3490360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-  price: 500,
-});
+// const [shoe,setShoe] = useState({
+//   name: "Training Shoes",
+//   creator: "Nike",
+//   img: "https://images.pexels.com/photos/3490360/pexels-photo-3490360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+//   price: 500,
+// });
 
 
 const initPay = (data) => {

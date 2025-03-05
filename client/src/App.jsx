@@ -14,6 +14,9 @@ import CustomerOrder from "./Admin/CustomerOrder";
 import CustomerUpdate from "./Admin/CustomerUpdate";
 import DisplayCustomer from "./Admin/DisplayCustomer";
 import Kitchen from "./pages/kitchen";
+import Light from "./pages/Light";
+import EditProduct from "./admin/EditProduct";
+import Walldecore from "./pages/wall";
 
 
 const App=()=>{
@@ -26,6 +29,8 @@ const App=()=>{
       <Route path="gift" element={<Gift/>}/>
       <Route path="decor" element={<Decor/>}/>
       <Route path="kitchen" element={<Kitchen/>}/>
+      <Route path="lighting" element={<Light/>}/>
+      <Route path="wall" element={<Walldecore/>}/>
       <Route path="cart" element={<Cart/>}/>
       <Route path="contact" element={<Contact/>}/>
       <Route path="productdetail/:id" element={<ProductDetail/>}/>
@@ -39,6 +44,7 @@ const App=()=>{
       <Route path="customerorder" element={<CustomerOrder/>}/>
       <Route path="customerupdate" element={<CustomerUpdate/>}/>
       <Route path="displaycustomer" element={<DisplayCustomer/>}/>
+      <Route path="edit/:id" element={<EditProduct/>}/>
       
       </Route>
     </Routes>

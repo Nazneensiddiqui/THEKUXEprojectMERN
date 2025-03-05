@@ -2,6 +2,7 @@ const AdminModel=require("../Models/AdminModels")
 const ProductModel=require("../Models/ProductModel")
 const UserModel=require("../Models/UserModel")
 const CustomerModel=require("../Models/CustomerModel")
+const mongoose = require("mongoose");
 
 const LoginSystem=async(req , res)=>{
  const {userid , password}=req.body
@@ -97,9 +98,45 @@ const DeleteProduct=async(req, res)=>{
         const Product= await ProductModel.findByIdAndDelete(id)
         res.send("ok")
     } catch (error) {
-        console.log(Error)    }
+        console.log(error)    }
     
 }
+
+const EditDisplay=async(req,res)=>{
+   const {id}=req.body
+   try {
+    const Product= await ProductModel.findById(id)
+    res.send(Product)
+} catch (error) {
+    console.log(error)    }
+
+}
+
+const EditproductSave=async(req,res)=>{
+  const  {_id, product, price, description, category,subcategory, material, pack, dimensions, images, defaultImage, ratings, status}=req.body
+ try {
+    const mydata= await ProductModel.findByIdAndUpdate(_id ,
+        {   product,
+            price, 
+            description, 
+            category, 
+            subcategory,
+            material,
+            pack,
+            dimensions,
+            images,
+            defaultImage,
+            ratings,
+            status,
+        }) 
+        res.send("ok")
+ } catch (error) {
+    console.log(error)
+ }
+}
+
+  
+
 
 module.exports={
     LoginSystem,
@@ -109,6 +146,8 @@ module.exports={
     ProductNormal,
     CustomerOrder,
     displayAllCustomer,
-    DeleteProduct
+    DeleteProduct,
+    EditDisplay,
+    EditproductSave
 
 }
