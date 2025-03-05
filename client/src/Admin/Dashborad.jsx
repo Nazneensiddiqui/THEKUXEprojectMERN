@@ -24,7 +24,7 @@ const Dashborad = () => {
                     <li><Link to="displaycustomer"><FaTable /> Display User</Link></li>
                     <li><Link to="customerorder"><MdOutlineProductionQuantityLimits />Customer Orders</Link></li>
                     <li><Link to="update"><FaEdit /> Update Products</Link></li>
-                    <li><Link to="edit"><FaEdit /> Edit Products</Link></li>
+                    {/* <li><Link to="edit"><FaEdit /> Edit Products</Link></li> */}
                     <li><Link to="customerupdate"><FaEdit /> Update Customers</Link></li>
                     <li><Link to="/" className="logout"><FaSignOutAlt /> Logout</Link></li>
                 </ul>
