@@ -62,7 +62,7 @@ const ans=Mydata.map((key)=>{
       {/* Image Section with Overlay */}
           <div className="card">
             <a href='#' onClick={()=>{Pro_Detail(key._id)}}>
-            <img src={`${BASE_URL}/${key.defaultImage}`} style={{ height: "240px", width: "100%"  }} alt={key.description} /></a>
+            <img src={`${BASE_URL}/${key.defaultImage}`} alt={key.description} style={{ height: "240px", width: "100%"  }}/></a>
             <div className="overlay"  
             onClick={()=>{dispatch(addToCart({id:key._id, name:key.name, brand:key.brand, price:key.price, description:key.description, category:key.category, subcategory:key.subcategory, images:key.images, defaultImage:key.defaultImage, ratings:key.ratings, status:key.status, qnty:1}))}}>+Add to Cart</div>
           </div>

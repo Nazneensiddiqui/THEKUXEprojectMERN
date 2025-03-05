@@ -5,6 +5,7 @@ const CustomerModel=require("../Models/CustomerModel")
 const mongoose = require("mongoose");
 
 const LoginSystem=async(req , res)=>{
+    console.log(req.body)
  const {userid , password}=req.body
    try {
     const Admin= await AdminModel.findOne({userid:userid})

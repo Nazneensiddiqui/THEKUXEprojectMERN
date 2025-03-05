@@ -3,7 +3,7 @@ const app=express();
 require("dotenv").config()
 const cors=require("cors")
 
-const port=process.env.PROT || 8060
+const port=process.env.PROT || 8000
  const dbcon=process.env.DBCON 
 
 const mongoose=require("mongoose")
