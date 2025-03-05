@@ -64,10 +64,10 @@ const DeletePro=async(id)=>{
      loadData();
  }
 
- const EditPro=(id)=>{
-     alert(id)
-    navigate(`/dashborad/edit/${id}`) 
- }
+//  const EditPro=(id)=>{
+//      alert(id)
+//      navigate(`/dashborad/edit/${id}`) 
+//  }
 
 
 const ans=mydata.map((key)=>{
@@ -91,8 +91,8 @@ const ans=mydata.map((key)=>{
            </td>
            <td>
            <Button variant="danger" size="sm" onClick={()=>{DeletePro(key._id)}}>Delete</Button></td>
-         <td>  <Button variant="warning" size="sm" onClick={()=>{EditPro(key._id)}}>Edit</Button>
-           </td>
+         {/* <td>  <Button variant="warning" size="sm" onClick={()=>{EditPro(key._id)}}>Edit</Button> 
+           </td>*/}
          </tr>
         </>
      )

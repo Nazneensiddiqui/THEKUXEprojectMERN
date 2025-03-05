@@ -103,7 +103,7 @@ route.post("/productmakeprimary", AdminController.ProductMakePrimary);
 route.post("/productmakenormal", AdminController.ProductNormal);
 route.get("/coustomerorderdisplay", AdminController.CustomerOrder);
 route.get("/displayallcustome", AdminController.displayAllCustomer);
-route.post("/EditProductdisplay", AdminController.EditDisplay);
+route.post("/display", AdminController.EditDisplay);
 
 
 // ✅ Fix: Add Multer middleware in `editdatasave`
