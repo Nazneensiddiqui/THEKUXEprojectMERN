@@ -87,7 +87,7 @@ import img from "../images/img.jpg"
 import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import "../admin/LoginSystem.css"
+import "./LoginSystem.css"
 import BASE_URL from "../config";
 
 
