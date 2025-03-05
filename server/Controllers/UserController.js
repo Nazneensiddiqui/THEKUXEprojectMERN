@@ -1,5 +1,5 @@
 const UserModel = require("../Models/UserModel");
-const bcrypt = require("bcrypt");
+const bcrypt=require("bcryptjs")
 const jwt=require("jsonwebtoken");
 
 const  Signup= async (req, res) => {
@@ -10,8 +10,8 @@ const  Signup= async (req, res) => {
                 return res.status(400).send({ msg: "User already exists! Please log in." });
             }
 
-            const salt = await bcrypt.genSalt();
-            const hashedPassword = await bcrypt.hash(password, salt);
+        
+            const hashedPassword = await bcrypt.hash(password, 8);
 
             const newUser = await UserModel.create({
                 name,

@@ -1,5 +1,5 @@
 const ProductModel= require("../Models/ProductModel");
-
+const UserModel=require("../Models/UserModel")
 const productDisplay=async(req, res)=>{
     try {
          const Product = await ProductModel.find({category:"Decor"});
@@ -10,7 +10,7 @@ const productDisplay=async(req, res)=>{
     }
 }
 
-const UserModel=require("../Models/UserModel")
+
 
 const CustomerData=async(req,res)=>{
   const {email,name,address,phoneno,city,state,amount,paymethod}=req.body
