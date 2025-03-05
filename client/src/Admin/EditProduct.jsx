@@ -37,7 +37,7 @@ const decorKartCategories = {
   };
 
 
-const EditProduct=()=>{
+const ProductEdit=()=>{
   const {id}=useParams();
   const navigate=useNavigate();
   const [mydata, setmyData]=useState({});
@@ -231,4 +231,4 @@ useEffect(()=>{
         </>
     )
 }
-export default EditProduct;
+export default ProductEdit;
