@@ -32,10 +32,10 @@ const CustomerData=async(req,res)=>{
 }
 
 const ProductDetail=async(req , res)=>{
-  console.log(req.body)
- const { id }= req.body
+ const {id}= req.body
   try {
-    const Product= await ProductModel.findOne({id:id})
+    const Product= await ProductModel.findById({id:id})
+    console.log(Product)
     res.send(Product)
   } catch (error) {
     console.log(error)
@@ -64,7 +64,6 @@ const LightProduct=async(req, res)=>{
 }
 
 const WallProduct=async(req,res)=>{
-  console.log(req.body)
   try {
     const Product = await ProductModel.find({category:"Wall Decor"});
  res.status(200).send(Product);
@@ -72,6 +71,26 @@ const WallProduct=async(req,res)=>{
    console.log(error);
 }
 }
+
+const BathProduct=async(req,res)=>{
+  try {
+    const Product = await ProductModel.find({category:"Bath Decor"});
+ res.status(200).send(Product);
+} catch (error) {
+   console.log(error);
+   }
+}
+
+const FurnitureProduct=async(req,res)=>{
+  // console.log(req.body)
+  try {
+    const Product = await ProductModel.find({category:"Furniture"});
+ res.status(200).send(Product);
+} catch (error) {
+   console.log(error);
+   }
+}
+
 
 
 
@@ -82,5 +101,7 @@ module.exports={
     ProductDetail,
     Kitchendisplay,
     LightProduct,
-    WallProduct
+    WallProduct,
+    BathProduct,
+    FurnitureProduct
 }

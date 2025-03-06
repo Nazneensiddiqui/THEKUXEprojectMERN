@@ -114,7 +114,7 @@ const ans=mydata.map((key)=>{
           <th>Rating</th>
           <th> Action</th>
           <th> Delete</th>
-          <th> Edit</th>
+          {/* <th> Edit</th> */}
         </tr>
       </thead>
       <tbody>

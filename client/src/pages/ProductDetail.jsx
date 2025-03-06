@@ -24,7 +24,7 @@ const ProductDetail=()=>{
 const loadData=async()=>{
   let api=`${BASE_URL}/product/productdetail`;
   try {
-    const response= await axios.get(api,{id:id})
+    const response= await axios.post(api,{id:id})
     setMydata(response.data)
     console.log(response.data)
   } catch (error) {
@@ -39,7 +39,7 @@ useEffect(()=>{
 
     return(
         <>
-         {id}
+     
           <div style={{display:"flex", justifyContent:"space-evenly", marginTop:"50px" ,gap:"10px"}}>
             <div style={{display:"flex", gap:"10px"}}>
             <img src={`${BASE_URL}/${mydata.defaultImage}`}   style={{height:'500px', width:"450px"}}/>

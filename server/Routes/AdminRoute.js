@@ -107,6 +107,6 @@ route.post("/display", AdminController.EditDisplay);
 
 
 // ✅ Fix: Add Multer middleware in `editdatasave`
-route.post("/editdatasave", upload.array("files", 10) ,AdminController.EditproductSave);
+//route.post("/editdatasave", upload.array("files", 10) ,AdminController.EditproductSave);
 
 module.exports = route;

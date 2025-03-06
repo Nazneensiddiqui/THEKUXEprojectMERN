@@ -16,6 +16,8 @@ import DisplayCustomer from "./Admin/DisplayCustomer";
 import Kitchen from "./pages/kitchen";
 import Light from "./pages/Light";
 import Walldecore from "./pages/wall";
+import Bath from "./pages/bath";
+import Furniture from "./pages/furniture";
 // import EditProduct from "./admin/ProductEdit";
 
 
@@ -34,6 +36,8 @@ const App=()=>{
       <Route path="kitchen" element={<Kitchen/>}/>
       <Route path="lighting" element={<Light/>}/>
       <Route path="wall" element={<Walldecore/>}/>
+      <Route path="bath" element={<Bath/>}/>
+      <Route path="furniture" element={<Furniture/>}/>
       <Route path="cart" element={<Cart/>}/>
       <Route path="contact" element={<Contact/>}/>
       <Route path="productdetail/:id" element={<ProductDetail/>}/>

@@ -80,9 +80,10 @@ const InsertItems = () => {
 
     try {
       const api = `${BASE_URL}/admin/productsave`;
-      await axios.post(api, formData, {
+     const response= await axios.post(api, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
+      console.log(response.data)
       alert("File uploaded successfully!");
       setInput({});
       setImages([])
