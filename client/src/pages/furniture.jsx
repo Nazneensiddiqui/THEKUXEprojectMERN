@@ -42,7 +42,8 @@ useEffect(()=>{
 },[])
 
 const Pro_Detail=(id)=>{
-navigate(`/prodect/${id}`)
+  alert(id)
+navigate(`/productdetail/${id}`)
  }
 
 const ans=mydata.map((key)=>{

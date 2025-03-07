@@ -3,7 +3,6 @@ const UserModel=require("../Models/UserModel")
 const productDisplay=async(req, res)=>{
     try {
          const Product = await ProductModel.find({category:"Decor"});
-         console.log(Product)
          res.status(200).send(Product);
     } catch (error) {
         console.log(error);
@@ -34,7 +33,7 @@ const CustomerData=async(req,res)=>{
 const ProductDetail=async(req , res)=>{
  const {id}= req.body
   try {
-    const Product= await ProductModel.findById({id:id})
+    const Product= await ProductModel.findById(id)
     console.log(Product)
     res.send(Product)
   } catch (error) {

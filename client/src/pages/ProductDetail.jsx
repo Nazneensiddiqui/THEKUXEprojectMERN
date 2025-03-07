@@ -63,7 +63,7 @@ useEffect(()=>{
                          </p>{mydata.pack}</div> 
                          <div style={{display:"flex", gap:"5px",marginTop:"10px",fontFamily:"time"}}>
                     <p style={{fontSize:"14px", color:" rgb(163, 158, 158)"}}> Dimensions :
-                  </p>{mydata.dimansion}</div> 
+                  </p>{mydata.dimensions}</div> 
         
                   <Button
                         style={{ backgroundColor: "rgb(6, 65, 32)", width: "400px", height: "50px", color: "white" }}

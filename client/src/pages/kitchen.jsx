@@ -43,10 +43,10 @@ useEffect(()=>{
 
 
  
- const Pro_Detail=(id)=>{
-  navigate(`/prodect/${id}`)
-   }
-
+const Pro_Detail=(id)=>{
+  alert(id)
+navigate(`/productdetail/${id}`)
+ }
 
 const ans=data.map((key)=>{
  return(
@@ -55,7 +55,7 @@ const ans=data.map((key)=>{
    <Card style={{width:"230px", marginTop:"20px"}}>
       {/* Image Section with Overlay */}
           <div className="card">
-          <a href='#' onClick={()=>{Pro_Detail(key.id)}}>
+          <a href='#' onClick={()=>{Pro_Detail(key._id)}}>
           <img src={`${BASE_URL}/${key.defaultImage}`} style={{ height: "240px", width: "100%" }} alt={key.description} /></a>
             <div className="overlay" 
           onClick={()=>{dispatch(addToCart({id:key._id, name:key.name, brand:key.brand, price:key.price, description:key.description, category:key.category, subcategory:key.subcategory, images:key.images, defaultImage:key.defaultImage, ratings:key.ratings, status:key.status, qnty:1}))}}>+Add to Cart</div>
