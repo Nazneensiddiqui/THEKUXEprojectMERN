@@ -70,7 +70,7 @@ let myProList="";
            <span style={{ marginLeft: '10px', marginRight: '10px', fontWeight: 'bold' }}>
               {key.qnty}
             </span>
-          <a href="#" onClick={() => { qtyIncrement(key.id) }}>
+          <a href="#" onClick={() => {qtyIncrement(key.id) }}>
               <FaPlusCircle />
             </a>
                </td>

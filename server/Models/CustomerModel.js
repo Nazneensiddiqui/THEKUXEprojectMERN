@@ -11,7 +11,7 @@ const CustomerSchema= new mongoose.Schema({
     myProImg:String,
     createdAt: {
         type: Date,
-        default: Date.now,  // ✅ इसे सही तरीके से सेट करें
+        default: Date.now, 
       },
    })
    module.exports=mongoose.model("customer" , CustomerSchema)

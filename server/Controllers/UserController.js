@@ -44,7 +44,7 @@ const  Signup= async (req, res) => {
            // JWT Token
             const token = jwt.sign({ id: user._id }, process.env.TOKEN_KEY, { expiresIn: "7d" });
     
-            // ✅ Updated response including user details
+            //  Updated response including user details
             return res.status(200).send({
                 msg: "Login Successful",
                 token: token,
